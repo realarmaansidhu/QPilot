@@ -1,6 +1,6 @@
 // QPilot API client — communicates with FastAPI backend
 import type { ScreenerParams, ScreenerResponse } from '@/types/api';
-import type { AnalysisReport, StockScore } from '@/types/stock';
+import type { AnalysisReport, StockProfile, StockScore } from '@/types/stock';
 import { createClient } from '@/lib/supabase/client';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
@@ -20,8 +20,8 @@ async function apiFetch<T>(path: string, options?: RequestInit): Promise<T> {
     headers: { 'Content-Type': 'application/json', ...headers, ...options?.headers },
   });
   if (!res.ok) {
-    const err = await res.json().catch(() => ({ message: res.statusText }));
-    throw new Error(err.message || `API error ${res.status}`);
+    const err = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(err.detail || err.message || `API error ${res.status}`);
   }
   return res.json();
 }
@@ -41,8 +41,8 @@ export async function getScreener(params: ScreenerParams = {}): Promise<Screener
 }
 
 /** Fetch basic stock data + latest score */
-export async function getStock(ticker: string): Promise<StockScore> {
-  return apiFetch<StockScore>(`/stock/${ticker}`);
+export async function getStock(ticker: string): Promise<StockProfile> {
+  return apiFetch<StockProfile>(`/stock/${ticker}`);
 }
 
 /** Fetch user's watchlist */

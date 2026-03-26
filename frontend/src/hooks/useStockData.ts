@@ -2,11 +2,11 @@
 
 import { useCallback, useEffect, useState } from 'react';
 import { getStock } from '@/lib/api';
-import type { StockScore } from '@/types/stock';
+import type { StockProfile } from '@/types/stock';
 
 /** Hook to fetch stock data for a given ticker */
 export function useStockData(ticker: string) {
-  const [stock, setStock] = useState<StockScore | null>(null);
+  const [stock, setStock] = useState<StockProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 

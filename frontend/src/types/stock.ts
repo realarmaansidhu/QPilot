@@ -1,29 +1,30 @@
-// QPilot stock data types — shared across frontend components
+// QPilot stock data types — aligned with backend Pydantic models
 
 export type Rating = 'strong_buy' | 'buy' | 'hold' | 'sell' | 'strong_sell';
 
+/** Matches backend models.stock.StockScore */
 export interface StockScore {
   ticker: string;
   company_name: string;
   sector: string;
-  score_date: string;
-  qpilot_score: number;
+  score: number;          // QPilot composite score 0-100
   rating: Rating;
-  fundamental_score: number | null;
-  technical_score: number | null;
-  momentum_score: number | null;
-  risk_score: number | null;
-  sentiment_score: number | null;
-  price: number | null;
+  fundamental: number;
+  technical: number;
+  momentum: number;
+  risk: number;
+  sentiment: number;
+}
+
+/** Matches backend models.stock.StockProfile */
+export interface StockProfile {
+  ticker: string;
+  company_name: string;
+  sector: string;
   market_cap: number | null;
-  pe_ratio: number | null;
-  revenue_growth: number | null;
-  eps_growth: number | null;
-  rsi: number | null;
-  beta: number | null;
-  dividend_yield: number | null;
-  fifty_two_week_high: number | null;
-  fifty_two_week_low: number | null;
+  price: number | null;
+  change_pct: number | null;
+  score: StockScore | null;
 }
 
 export type SectionType =
@@ -49,7 +50,7 @@ export interface AnalysisReport {
   id: string;
   ticker: string;
   sections: ReportSection[];
-  qpilot_score: number;
+  score: number;
   rating: Rating;
   model_used: string | null;
   created_at: string;

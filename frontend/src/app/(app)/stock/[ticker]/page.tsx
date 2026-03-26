@@ -44,20 +44,20 @@ export default function StockPage() {
         <div>
           <div className="flex items-center gap-3">
             <h1 className="text-3xl font-bold">{ticker}</h1>
-            {stock && <RatingBadge rating={stock.rating} />}
+            {stock?.score && <RatingBadge rating={stock.score.rating} />}
           </div>
           {stock && (
             <p className="text-muted-foreground mt-1">
               {stock.company_name} &middot; {stock.sector}
             </p>
           )}
-          {stock?.price && (
+          {stock?.price != null && (
             <p className="text-2xl font-semibold mt-2">${stock.price.toFixed(2)}</p>
           )}
         </div>
 
         <div className="flex items-center gap-3">
-          {stock && <ScoreGauge score={stock.qpilot_score} size="lg" />}
+          {stock?.score && <ScoreGauge score={stock.score.score} size="lg" />}
           <Button variant="outline" size="icon" className="border-white/10 hover:bg-white/5">
             <Star className="h-4 w-4" />
           </Button>

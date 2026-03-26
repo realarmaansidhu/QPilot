@@ -10,7 +10,6 @@ export function useSubscription() {
 
   return useMemo(() => {
     const tier: SubscriptionTier = profile?.subscription_tier ?? 'free';
-    const limits = TIER_LIMITS[tier];
 
     const trialEndsAt = profile?.trial_ends_at ? new Date(profile.trial_ends_at) : null;
     const isTrialActive = trialEndsAt ? trialEndsAt > new Date() : false;

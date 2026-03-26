@@ -1,4 +1,4 @@
-// QPilot API request/response types
+// QPilot API request/response types — aligned with backend Pydantic models
 
 import type { Rating, StockScore } from './stock';
 
@@ -11,14 +11,14 @@ export interface ScreenerParams {
   offset?: number;
 }
 
+/** Matches backend models.stock.ScreenerResponse */
 export interface ScreenerResponse {
-  stocks: StockScore[];
+  results: StockScore[];
   total: number;
-  page: number;
-  per_page: number;
+  limit: number;
+  offset: number;
 }
 
 export interface ApiError {
-  message: string;
-  status_code: number;
+  detail: string; // FastAPI uses 'detail' for error messages
 }

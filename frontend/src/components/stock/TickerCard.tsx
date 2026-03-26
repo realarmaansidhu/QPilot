@@ -12,15 +12,6 @@ interface TickerCardProps {
 
 /** Compact card for leaderboard/screener — links to deep-dive page */
 export function TickerCard({ stock }: TickerCardProps) {
-  const formatPrice = (n: number | null) => n != null ? `$${n.toFixed(2)}` : '—';
-  const formatPct = (n: number | null) => n != null ? `${(n * 100).toFixed(1)}%` : '—';
-  const formatCap = (n: number | null) => {
-    if (n == null) return '—';
-    if (n >= 1e12) return `$${(n / 1e12).toFixed(1)}T`;
-    if (n >= 1e9) return `$${(n / 1e9).toFixed(1)}B`;
-    return `$${(n / 1e6).toFixed(0)}M`;
-  };
-
   return (
     <Link href={`/stock/${stock.ticker}`}>
       <Card className="hover:border-[#00D4AA]/50 transition-colors cursor-pointer bg-[#0A1628]/50 border-white/10">
@@ -37,26 +28,30 @@ export function TickerCard({ stock }: TickerCardProps) {
             </div>
 
             {/* Right: score gauge */}
-            <ScoreGauge score={stock.qpilot_score} size="sm" />
+            <ScoreGauge score={stock.score} size="sm" />
           </div>
 
-          {/* Metrics row */}
-          <div className="grid grid-cols-4 gap-2 mt-3 text-xs text-muted-foreground">
+          {/* Sub-score breakdown */}
+          <div className="grid grid-cols-5 gap-2 mt-3 text-xs text-muted-foreground">
             <div>
-              <span className="block font-medium text-foreground">{formatPrice(stock.price)}</span>
-              Price
+              <span className="block font-medium text-foreground">{stock.fundamental.toFixed(0)}</span>
+              Fund
             </div>
             <div>
-              <span className="block font-medium text-foreground">{formatCap(stock.market_cap)}</span>
-              Mkt Cap
+              <span className="block font-medium text-foreground">{stock.technical.toFixed(0)}</span>
+              Tech
             </div>
             <div>
-              <span className="block font-medium text-foreground">{stock.pe_ratio?.toFixed(1) ?? '—'}</span>
-              P/E
+              <span className="block font-medium text-foreground">{stock.momentum.toFixed(0)}</span>
+              Momen
             </div>
             <div>
-              <span className="block font-medium text-foreground">{formatPct(stock.revenue_growth)}</span>
-              Rev Growth
+              <span className="block font-medium text-foreground">{stock.risk.toFixed(0)}</span>
+              Risk
+            </div>
+            <div>
+              <span className="block font-medium text-foreground">{stock.sentiment.toFixed(0)}</span>
+              Sent
             </div>
           </div>
         </CardContent>
