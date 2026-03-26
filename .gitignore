@@ -1,0 +1,72 @@
+# ============================================================
+#  QPilot — Monorepo .gitignore
+#  Frontend (Next.js) + Backend (FastAPI) + Database
+# ============================================================
+
+# ── Environment & Secrets ─────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# ── Python ────────────────────────────────────────────────────
+environ/
+venv/
+.venv/
+env/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ── Node.js / Next.js (frontend/) ────────────────────────────
+node_modules/
+.next/
+out/
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+
+# ── IDE & Editor ──────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-project
+.sublime-workspace
+.claude/
+
+# ── OS Files ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Logs & State ──────────────────────────────────────────────
+*.log
+logs/
+
+# ── Temp / Generated ─────────────────────────────────────────
+*.tmp
+.tmp/
+temp/
+*.cache
+.vexp/
+
+# ── Keep these (force-tracked) ────────────────────────────────
+!.env.example
+!frontend/.env.example
+!backend/.env.example
