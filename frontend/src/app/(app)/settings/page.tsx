@@ -8,9 +8,9 @@ import type { LLMProvider } from '@/types/user';
 
 /** Settings page — profile, API keys, billing */
 export default function SettingsPage() {
-  async function handleSaveKey(provider: LLMProvider, key: string) {
+  async function handleSaveKey(_provider: LLMProvider, _key: string) {
     // TODO: Save encrypted key to Supabase via backend
-    console.log('Saving key for', provider);
+    console.log('Saving key for', _provider);
   }
 
   return (

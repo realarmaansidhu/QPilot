@@ -15,7 +15,7 @@ export default function OnboardingPage() {
   const router = useRouter();
   const [step, setStep] = useState(0);
 
-  async function handleSaveKey(provider: LLMProvider, key: string) {
+  async function handleSaveKey(_provider: LLMProvider, _key: string) {
     // TODO: Save key via backend, then advance
     setStep(2);
   }

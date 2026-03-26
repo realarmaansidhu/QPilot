@@ -2,11 +2,10 @@
 
 import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { TickerCard } from '@/components/stock/TickerCard';
-import type { StockScore, Rating } from '@/types/stock';
+import type { StockScore } from '@/types/stock';
 
 const SECTORS = ['All', 'Technology', 'Healthcare', 'Financials', 'Consumer Discretionary', 'Energy', 'Industrials', 'Communication Services', 'Utilities', 'Materials', 'Real Estate', 'Consumer Staples'];
 
